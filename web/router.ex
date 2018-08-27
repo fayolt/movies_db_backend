@@ -20,7 +20,8 @@ defmodule MoviesDbBackend.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", MoviesDbBackend do
-  #   pipe_through :api
-  # end
+  scope "/api", MoviesDbBackend do
+    pipe_through :api
+    resources "/movies", MovieController
+  end
 end

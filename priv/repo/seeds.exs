@@ -1,11 +1,5 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     MoviesDbBackend.Repo.insert!(%MoviesDbBackend.SomeModel{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will halt execution if something goes wrong.
+alias MoviesDbBackend.{Repo, Movie}
+
+%{"movies" => movies} = File.read!("movies.json") |> Poison.decode!
+movies |> Enum.map(fn movie_data -> Movie.changeset(%Movie{}, movie_data) end)
+       |> Enum.each(fn changeset -> Repo.insert!(changeset) end)
