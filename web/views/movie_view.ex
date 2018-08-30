@@ -2,11 +2,11 @@ defmodule MoviesDbBackend.MovieView do
   use MoviesDbBackend.Web, :view
 
   def render("index.json", %{movies: movies}) do
-    %{data: render_many(movies, MoviesDbBackend.MovieView, "movie.json")}
+    %{movies: render_many(movies, MoviesDbBackend.MovieView, "movie.json")}
   end
 
   def render("show.json", %{movie: movie}) do
-    %{data: render_one(movie, MoviesDbBackend.MovieView, "movie.json")}
+    %{movies: render_one(movie, MoviesDbBackend.MovieView, "movie.json")}
   end
 
   def render("movie.json", %{movie: movie}) do

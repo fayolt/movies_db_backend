@@ -22,6 +22,11 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-# Import environment specific config. This must remain at the bottom
+# Configures Algolia Search
+config :algolia,
+  application_id: "F1H4RHQQOS",
+  api_key: "653c7e19a8a92b96935b3681becf5706"
+
+  # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

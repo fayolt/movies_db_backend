@@ -38,5 +38,6 @@ defmodule MoviesDbBackend.Endpoint do
     key: "_movies_db_backend_key",
     signing_salt: "RGipKsF4"
 
+  plug Corsica, origins: "*", allow_headers: ["content-type", "authorization"]
   plug MoviesDbBackend.Router
 end

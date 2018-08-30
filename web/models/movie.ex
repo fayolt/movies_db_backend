@@ -1,6 +1,6 @@
 defmodule MoviesDbBackend.Movie do
   use MoviesDbBackend.Web, :model
-
+  
   @primary_key {:objectID, :string, []}
   @derive {Phoenix.Param, key: :objectID}
   schema "movies" do
@@ -17,7 +17,6 @@ defmodule MoviesDbBackend.Movie do
 
     timestamps()
   end
-
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
