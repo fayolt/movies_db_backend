@@ -6,7 +6,7 @@ defmodule MoviesDbBackend.MovieView do
   end
 
   def render("show.json", %{movie: movie}) do
-    %{movies: render_one(movie, MoviesDbBackend.MovieView, "movie.json")}
+    %{movie: render_one(movie, MoviesDbBackend.MovieView, "movie.json")}
   end
 
   def render("movie.json", %{movie: movie}) do

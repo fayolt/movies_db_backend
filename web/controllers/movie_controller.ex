@@ -13,9 +13,7 @@ defmodule MoviesDbBackend.MovieController do
       |> Enum.to_list
       |> Enum.each(fn mv -> Algolia.save_objects("movies_db_index", mv) end)
       # |> Enum.each(fn lst -> IO.inspect length(lst) end)
-    conn
-      |> put_status(200)
-      |> json(movies |> Enum.map(fn movie -> movie.objectID end))
+    send_resp(conn, :no_content, "")
   end
   
   def index(conn, _params) do
@@ -23,9 +21,9 @@ defmodule MoviesDbBackend.MovieController do
     render(conn, "index.json", movies: movies)
   end
 
-  def create(conn, %{"movie" => movie_params}) do
+  def create(conn,  %{"movie" => movie_params}) do
+    movie_params = Map.put(movie_params, "objectID", UUID.uuid4(:hex))
     changeset = Movie.changeset(%Movie{}, movie_params)
-
     case Repo.insert(changeset) do
       {:ok, movie} ->
         conn
@@ -39,12 +37,12 @@ defmodule MoviesDbBackend.MovieController do
     end
   end
 
-  def show(conn, %{"objectID" => objectID}) do
+  def show(conn, %{"id" => objectID}) do
     movie = Repo.get!(Movie, objectID)
     render(conn, "show.json", movie: movie)
   end
 
-  def update(conn, %{"objectID" => objectID, "movie" => movie_params}) do
+  def update(conn, %{"id" => objectID, "movie" => movie_params}) do
     movie = Repo.get!(Movie, objectID)
     changeset = Movie.changeset(movie, movie_params)
 
@@ -58,7 +56,7 @@ defmodule MoviesDbBackend.MovieController do
     end
   end
 
-  def delete(conn, %{"objectID" => objectID}) do
+  def delete(conn, %{"id" => objectID}) do
     movie = Repo.get!(Movie, objectID)
 
     # Here we use delete! (with a bang) because we expect

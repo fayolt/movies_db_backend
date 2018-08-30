@@ -42,7 +42,8 @@ defmodule MoviesDbBackend.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:algolia, "~> 0.7.0"},
-      {:corsica, "~> 1.0"}
+      {:corsica, "~> 1.0"},
+      { :elixir_uuid, "~> 1.2" }
     ]
   end
 
