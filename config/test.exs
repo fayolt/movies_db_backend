@@ -15,5 +15,5 @@ config :movies_db_backend, MoviesDbBackend.Repo,
   username: "postgres",
   password: "postgres",
   database: "movies_db_backend_test",
-  hostname: "localhost",
+  hostname: "db",
   pool: Ecto.Adapters.SQL.Sandbox

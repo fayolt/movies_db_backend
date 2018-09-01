@@ -1,27 +1,19 @@
-version: '3'
-
+version: '3.2'
 services:
-  phoenix:
-    build:
+  db:
+    image: postgres
+
+  web:
+    build: 
       context: .
       dockerfile: Dockerfile
-    environment:
-      PGUSER: postgres
-      PGPASSWORD: postgres
-      PGDATABASE: movies_db_backend_dev
-      PGPORT: 5432
-      PGHOST: db
+    volumes:
+      - type: bind
+        source: .
+        target: /app
     ports:
       - "4000:4000"
-  db:
-    image: postgres:9.6
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      PGDATA: /var/lib/postgresql/data/pgdata
-    restart: always
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-
-volumes:
-  pgdata:
+    depends_on:
+      - db
+    # command:
+    #   - ./entrypoint.sh

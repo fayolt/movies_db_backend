@@ -52,5 +52,5 @@ config :movies_db_backend, MoviesDbBackend.Repo,
   username: "postgres",
   password: "postgres",
   database: "movies_db_backend_dev",
-  hostname: "localhost",
+  hostname: "db",
   pool_size: 10
