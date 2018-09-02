@@ -1,9 +1,9 @@
-alias MoviesDbBackend.{Repo, Movie}
+# alias MoviesDbBackend.{Repo, Movie}
 
-%{"movies" => movies} = File.read!("movies.json") |> Poison.decode!
+# %{"movies" => movies} = File.read!("movies.json") |> Poison.decode!
 
-new_movies = movies |> Enum.map(fn movie_data -> Movie.changeset(%Movie{}, movie_data) end)
-new_movies |> Enum.each(fn changeset -> Repo.insert!(changeset) end)
+# new_movies = movies |> Enum.map(fn movie_data -> Movie.changeset(%Movie{}, movie_data) end)
+# new_movies |> Enum.each(fn changeset -> Repo.insert!(changeset) end)
 
 # Algolia.set_settings("movies_db_index",
 #     %{

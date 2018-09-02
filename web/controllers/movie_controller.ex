@@ -33,11 +33,6 @@ defmodule MoviesDbBackend.MovieController do
     end
   end
 
-  def index(conn, _params) do
-    movies = Repo.all(Movie)
-    render(conn, "index.json", movies: movies)
-  end
-
   def sync(conn, _params) do
     movies = Repo.all(Movie)
     movies
@@ -48,6 +43,11 @@ defmodule MoviesDbBackend.MovieController do
       |> Enum.to_list
       |> Enum.each(fn mv -> Algolia.save_objects("movies_db_index", mv) end)
     send_resp(conn, :no_content, "")
+  end
+
+  def index(conn, _params) do
+    movies = Repo.all(Movie)
+    render(conn, "index.json", movies: movies)
   end
 
   def show(conn, %{"id" => objectID}) do
