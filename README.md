@@ -23,7 +23,7 @@ docker-compose build
 * Start the containers 
 
 ```sh
-docker-compose up -d
+docker-compose up
 ```
 
 * Stop the containers 
@@ -36,11 +36,13 @@ Now the backend app is available at [`localhost:4000`](http://localhost:4000)
 
 ## Functionning
 
-* At startup the local database is provisionned with initial data [`movies.json`](https://gist.github.com/alexandremeunier/49533eebe2ec93b14d32b2333272f9f8)
+* On startup the local database is provisionned with initial data [`movies.json`](https://gist.github.com/alexandremeunier/49533eebe2ec93b14d32b2333272f9f8)
 
 * An Algolia index named `movies_db_index` is created and data is indexed right away
 
-* The endpoint [`/api/movies/sync`](http:l//localhost:4000/api/movies/sync) can also be used to index all the data contained in the local database into Algolia index
+* The endpoint [`/api/movies/sync`](http:l//localhost:4000/api/movies/sync) can also be used after startup to index all the data contained in the local database into an Algolia index
+
+* Controllers' unit tests are run before starting the server
 
 ## Encountered Issues
   

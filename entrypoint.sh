@@ -24,7 +24,7 @@ mix ecto.setup
 
 # echo "\nTesting the installation..."
 # "Proove" that install was successful by running the tests
-# mix test
+mix test
 
 echo "\n Launching Phoenix web server..."
 # Start the phoenix web server
